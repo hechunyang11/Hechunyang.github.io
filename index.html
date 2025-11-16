@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贺春阳 - 个人学术主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --light: #ecf0f1;
+            --dark: #1a2530;
+            --success: #2ecc71;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* 导航栏 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 首页/横幅 */
+        #home {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .home-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .home-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .home-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* 关于部分 */
+        #about {
+            background: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .interest-tag {
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* 研究部分 */
+        #research {
+            background: var(--light);
+        }
+
+        .research-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: white;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 5px 5px 0 0;
+            margin: 0 5px;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .publication-list {
+            list-style: none;
+        }
+
+        .publication-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+        }
+
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-image {
+            flex: 0 0 120px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .pub-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pub-content {
+            flex: 1;
+        }
+
+        .pub-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .pub-authors {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .pub-venue {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .pub-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* 超声影像知识图谱部分 */
+        #knowledge-graph {
+            background: white;
+        }
+
+        .kg-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--text-light);
+        }
+
+        .kg-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .kg-visualization {
+            background: var(--dark);
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .kg-visualization h3 {
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .graph-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .graph-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(52, 152, 219, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(155, 89, 182, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(46, 204, 113, 0.3) 0%, transparent 50%);
+        }
+
+        .graph-nodes {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .node-1 {
+            top: 20%;
+            left: 20%;
+            background: var(--secondary);
+        }
+
+        .node-2 {
+            top: 20%;
+            right: 20%;
+            background: var(--accent);
+        }
+
+        .node-3 {
+            bottom: 30%;
+            left: 30%;
+            background: var(--success);
+        }
+
+        .node-4 {
+            bottom: 20%;
+            right: 30%;
+            background: #e74c3c;
+        }
+
+        .node-5 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f39c12;
+            width: 100px;
+            height: 100px;
+        }
+
+        .connecting-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            height: 2px;
+            transform-origin: 0 0;
+        }
+
+        /* 见习经历部分 */
+        #internship {
+            background: var(--light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--secondary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid white;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid white;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-icon {
+            right: -20px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-icon {
+            left: -20px;
+        }
+
+        /* 项目部分 */
+        #projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .project-description {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            background: var(--light);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+
+        /* 联系部分 */
+        #contact {
+            background: var(--light);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-left: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+                margin-bottom: 30px;
+            }
+            
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .publication-item {
+                flex-direction: column;
+            }
+            
+            .pub-image {
+                flex: 0 0 auto;
+                height: 150px;
+                width: 100%;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-icon,
+            .timeline-item:nth-child(even) .timeline-icon {
+                left: 10px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+                border-right: 10px solid white;
+                border-left: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">贺春阳</div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#research">研究</a></li>
+                    <li><a href="#knowledge-graph">知识图谱</a></li>
+                    <li><a href="#internship">见习经历</a></li>
+                    <li><a href="#projects">项目</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 首页/横幅 -->
+    <section id="home">
+        <div class="container">
+            <div class="home-content">
+                <img src="he.jpg" alt="贺春阳" class="avatar">
+                <h1>贺春阳</h1>
+                <p>医学影像学</p>
+                <p>天津医科大学</p>
+                <a href="#contact" class="btn">联系我</a>
+                <a href="#research" class="btn btn-outline">查看研究</a>
+                
+                <div class="social-links">
+                    <a href="mailto:li.ming@email.com"><i class="fas fa-envelope"></i></a>
+                    <a href="#"><i class="fab fa-google-scholar"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于部分 -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>个人简介</h3>
+                    <p>我是天津医科大学医学影像学2022级本科生</p>
+                    <h3 style="margin-top: 30px;">研究兴趣</h3>
+                    <div class="interests">
+                        <span class="interest-tag">医学影像AI</span>
+                        <span class="interest-tag">超声影像分析</span>
+                        <span class="interest-tag">知识图谱</span>
+                        <span class="interest-tag">深度学习</span>
+                        <span class="interest-tag">计算机辅助诊断</span>
+                        <span class="interest-tag">多模态融合</span>
+                    </div>
+                    
+                    <a href="#" class="btn" style="margin-top: 30px;">下载简历</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=400&q=80" alt="关于我">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究部分 -->
+    <section id="research">
+        <div class="container">
+            <div class="section-title">
+                <h2>研究</h2>
+            </div>
+            
+            <div class="research-tabs">
+                <button class="tab-btn active" data-tab="publications">发表论文</button>
+                <button class="tab-btn" data-tab="projects">研究项目</button>
+                <button class="tab-btn" data-tab="presentations">学术报告</button>
+            </div>
+
+             <div class="tab-content" id="projects">
+                <h3>发表论文</h3>
+                <p>这里展示您的论文信息...</p>
+            </div>
+
+            <div class="tab-content" id="projects">
+                <h3>研究项目</h3>
+                <p>这里展示您的研究项目信息...</p>
+            </div>
+            
+            <div class="tab-content" id="presentations">
+                <h3>学术报告</h3>
+                <p>这里展示您的学术报告信息...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 超声影像知识图谱部分 -->
+    <section id="knowledge-graph">
+        <div class="container">
+            <div class="section-title">
+                <h2>超声影像知识图谱</h2>
+            </div>
+            
+            <div class="kg-intro">
+                <p>超声影像知识图谱是我研究的核心方向，通过构建结构化的医学知识网络，将超声影像特征、疾病诊断、治疗方案等信息有机连接，为临床决策提供智能支持。</p>
+            </div>
+            
+            <div class="kg-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>知识建模</h3>
+                    <p>基于本体论构建超声影像领域知识模型，涵盖解剖结构、病理特征、诊断标准等核心概念。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>智能推理</h3>
+                    <p>利用图神经网络和推理引擎，实现基于知识图谱的疾病诊断和风险评估。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>语义检索</h3>
+                    <p>提供基于语义的超声影像检索系统，支持多维度查询和相似病例发现。</p>
+                </div>
+            </div>
+            
+            <div class="kg-visualization">
+                <h3>知识图谱可视化</h3>
+                <div class="graph-placeholder">
+                    <div class="graph-nodes">
+                        <div class="node node-1">超声特征</div>
+                        <div class="node node-2">疾病诊断</div>
+                        <div class="node node-3">治疗方案</div>
+                        <div class="node node-4">解剖结构</div>
+                        <div class="node node-5">知识图谱</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 见习经历部分 -->
+    <section id="internship">
+        <div class="container">
+            <div class="section-title">
+                <h2>见习经历</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年6月 - 2024年9月</div>
+                        <h3>天津市总医学医院 - 超声科</h3>
+                        <p>学习常见疾病的超声诊断标准，协助医生进行超声引导下的介入操作。</p>
+                        <p>收集并标注超声影像数据，为研究项目提供高质量的标注数据集。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021年3月 - 2021年8月</div>
+                        <h3>天津医科大学实验室</h3>
+                        <p>参与生理，病理，微生物等学科学习</p>
+                        <p>在实验室进行实验学习</p>
+                    </div>
+                </div>
+               
+                  
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019年9月 - 2020年1月</div>
+                        <h3>天津市第三医院 </h3>
+                        <p>学习多个科室的病理诊断，查体</p>
+                        <p>参与各科室问诊</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目部分 -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>项目</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200&q=80" alt="超声影像分析系统">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">超声影像智能分析系统</h3>
+                        <p class="project-description">开发基于深度学习的超声影像自动分割与诊断系统，提高诊断准确性和效率。</p>
+                        <div class="project-tags">
+                            <span class="project-tag">深度学习</span>
+                            <span class="project-tag">超声影像</span>
+                            <span class="project-tag">医学AI</span>
+                        </div>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1628498188903-8f5a6f5e123e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200&q=80" alt="知识图谱平台">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">超声影像知识图谱平台</h3>
+                        <p class="project-description">构建结构化的超声影像知识图谱，支持语义检索和智能推理，为临床决策提供支持。</p>
+                        <div class="project-tags">
+                            <span class="project-tag">知识图谱</span>
+                            <span class="project-tag">语义检索</span>
+                            <span class="project-tag">临床决策</span>
+                        </div>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200&q=80" alt="多模态融合">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">多模态医学影像融合平台</h3>
+                        <p class="project-description">研究基于深度学习的多模态医学影像融合方法，提高疾病诊断的准确性和可靠性。</p>
+                        <div class="project-tags">
+                            <span class="project-tag">多模态融合</span>
+                            <span class="project-tag">深度学习</span>
+                            <span class="project-tag">影像分析</span>
+                        </div>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系部分 -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我</h2>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>地址</h3>
+                            <p>天津市医科大学</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>邮箱</h3>
+                            <p>hechunayng2025@163.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>电话</h3>
+                            <p>+86 15222538702</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>办公时间</h3>
+                            <p>周一至周五: 9:00 - 17:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="主题" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="您的消息" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">贺春阳</div>
+                <ul class="footer-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于</a></li>
+                    <li><a href="#research">研究</a></li>
+                    <li><a href="#knowledge-graph">知识图谱</a></li>
+                    <li><a href="#internship">见习经历</a></li>
+                    <li><a href="#projects">项目</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                &copy; 2023 贺春阳. 保留所有权利.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // 标签页切换
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 移除所有活动类
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // 添加活动类到当前按钮和内容
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // 导航链接点击后关闭移动端菜单
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // 表单提交处理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢您的消息！我会尽快回复。');
+            this.reset();
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'white';
+                header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        // 创建知识图谱连接线
+        function createConnectingLines() {
+            const graphNodes = document.querySelector('.graph-nodes');
+            const nodes = document.querySelectorAll('.node');
+            
+            // 清除之前的连接线
+            document.querySelectorAll('.connecting-line').forEach(line => line.remove());
+            
+            // 创建连接线
+            nodes.forEach(node => {
+                if (node.classList.contains('node-5')) {
+                    // 中心节点连接到其他所有节点
+                    nodes.forEach(otherNode => {
+                        if (otherNode !== node && !otherNode.classList.contains('node-5')) {
+                            createLine(node, otherNode);
+                        }
+                    });
+                }
+            });
+        }
+        
+        function createLine(node1, node2) {
+            const graphNodes = document.querySelector('.graph-nodes');
+            const line = document.createElement('div');
+            line.classList.add('connecting-line');
+            
+            const rect1 = node1.getBoundingClientRect();
+            const rect2 = node2.getBoundingClientRect();
+            const graphRect = graphNodes.getBoundingClientRect();
+            
+            const x1 = rect1.left + rect1.width/2 - graphRect.left;
+            const y1 = rect1.top + rect1.height/2 - graphRect.top;
+            const x2 = rect2.left + rect2.width/2 - graphRect.left;
+            const y2 = rect2.top + rect2.height/2 - graphRect.top;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            line.style.width = `${length}px`;
+            line.style.left = `${x1}px`;
+            line.style.top = `${y1}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            graphNodes.appendChild(line);
+        }
+        
+        // 页面加载完成后创建连接线
+        window.addEventListener('load', createConnectingLines);
+        window.addEventListener('resize', createConnectingLines);
+    </script>
+</body>
+</html>
